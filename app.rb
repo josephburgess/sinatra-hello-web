@@ -8,8 +8,7 @@ class Application < Sinatra::Base
     register Sinatra::Reloader
   end
   get '/hello' do
-    name = params[:name]
-    "Hello #{name}"
+    erb(:index)
   end
 
   post '/submit' do
@@ -20,5 +19,10 @@ class Application < Sinatra::Base
 
   get '/names' do
     'Julia, Mary, Karim'
+  end
+
+  post '/sort-names' do
+    names = params[:names]
+    names.split(',').sort.join(',')
   end
 end

@@ -21,4 +21,19 @@ describe Application do
       expect(response.body).to eq('Julia, Mary, Karim')
     end
   end
+
+  context 'POST to /sort-names' do
+    it 'returns a sorted list of names' do
+      response = post('/sort-names', names: 'Joe,Alice,Zoe,Julia,Kieran')
+      expect(response.status).to eq(200)
+      expect(response.body).to eq('Alice,Joe,Julia,Kieran,Zoe')
+    end
+  end
+
+  context 'GET to /hello' do
+    it 'contains a greeting message within HTML page' do
+      response = get('/hello')
+      expect(response.body).to include '<h1>Hello!</h1>'
+    end
+  end
 end
